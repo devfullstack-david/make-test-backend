@@ -1,0 +1,6 @@
+@maketest_backend_HostAddress = http://localhost:5141
+
+GET {{maketest_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
