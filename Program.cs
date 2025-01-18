@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         new MySqlServerVersion(new Version(8, 0, 33))
     )
 );
+builder.Services.AddScoped<UserRepository>();
 
 var app = builder.Build();
 
