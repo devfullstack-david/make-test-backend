@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
         builder.Entity<User>(e => 
         {
             e.HasKey(u => u.Id);
+            e.Property(u => u.Id).ValueGeneratedOnAdd();
 
             e.Property(u => u.Name)
                 .IsRequired()

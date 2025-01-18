@@ -1,7 +1,6 @@
 using MakeTest.Context;
 using MakeTest.Contracts.Repositories;
 using MakeTest.Models.User.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
 public class UserRepository : IUserRepository
 {
@@ -14,6 +13,7 @@ public class UserRepository : IUserRepository
 
     public async Task CreateUser(CreateUserViewModel user)
     {
+        Console.WriteLine(user);
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
     }
