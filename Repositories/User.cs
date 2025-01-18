@@ -1,6 +1,7 @@
 using MakeTest.Context;
 using MakeTest.Contracts.Repositories;
 using MakeTest.Models.User.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 public class UserRepository : IUserRepository
 {
@@ -13,8 +14,17 @@ public class UserRepository : IUserRepository
 
     public async Task CreateUser(CreateUserViewModel user)
     {
-        Console.WriteLine(user);
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<bool> Login(LoginViewModel user)
+    {
+        bool userExists = await _context.Users.AnyAsync(
+            u => u.Email.Equals(user.Email) &&
+            u.Password.Equals(user.Password)
+        );
+        
+        return userExists;
     }
 }
