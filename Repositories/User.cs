@@ -1,5 +1,6 @@
 using MakeTest.Context;
 using MakeTest.Contracts.Repositories;
+using MakeTest.Models.Entities;
 using MakeTest.Models.User.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,5 +27,12 @@ public class UserRepository : IUserRepository
         );
         
         return userExists;
+    }
+
+    public async Task<ICollection<User>> GetUsers()
+    {
+        ICollection<User> users = await _context.Users.ToListAsync();
+
+        return users;
     }
 }

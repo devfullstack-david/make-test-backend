@@ -1,4 +1,5 @@
 using MakeTest.Contracts.Controllers;
+using MakeTest.Models.Entities;
 using MakeTest.Models.User.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,5 +47,24 @@ public class UserController : Controller, IUserController
         {
             return StatusCode(400, new { message = "Bad Request", details = exception.Message });
         }
+    }
+
+    [HttpGet]
+    [Route("Users")]
+    public async Task<ICollection<User>> GetUsers()
+    {
+       try
+       {
+        ICollection<User> users = await _repository.GetUsers();
+        if (users != null) {
+            return users;
+        };
+
+        return [];
+       }
+       catch (Exception exception)
+       {
+            throw new Exception(exception.Message);
+       } 
     }
 }
