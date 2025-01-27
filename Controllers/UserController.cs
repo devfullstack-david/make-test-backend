@@ -38,10 +38,10 @@ public class UserController : Controller, IUserController
             bool verifyUser = await _repository.Login(user);
             if(verifyUser)
             {
-                return Ok("Login realizado"); 
+                return Ok(200); 
             };
 
-            return NotFound("Dados incorretos");
+            return Ok(400);
         }
         catch (Exception exception)
         {
