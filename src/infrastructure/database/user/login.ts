@@ -3,10 +3,8 @@ import { db } from "../../connection/db";
 
 export class LoginRepository implements ILogin {
     async login(user: ILoginParams): Promise<boolean> {
-        const existsUser = db.user.findUnique({ where: { email: user.email, password: user.password }});
+        const existsUser = await db.user.findUnique({ where: { email: user.email }});
 
-        if (existsUser) return true;
-
-        return false;
+        return existsUser ? true : false;
     }
 }
