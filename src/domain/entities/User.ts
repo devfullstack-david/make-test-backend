@@ -49,4 +49,28 @@ export class User {
         this.password = password;
     }
 
+    get getEmail(): string {
+        return this.email;
+    }
+
+    get getName(): string {
+        return this.name;
+    }
+
+    get getLastName(): string {
+        return this.lastName;
+    }
+
+    get getCompany(): string | undefined {
+        return this.company;
+    }
+
+    get getBirthday(): Date {
+        return this.birthday;
+    }
+
+    get getPassword(): string {
+        return this.password;
+    }
+
 }
