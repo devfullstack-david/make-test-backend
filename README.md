@@ -71,7 +71,7 @@ src/
 5. Inicie o servidor:
 
    ```bash
-   npm run start
+   npm run dev
    ```
 
 ---
@@ -80,7 +80,7 @@ src/
 
 | Comando             | Descrição                              |
 | ------------------- | -------------------------------------- |
-| `npm run start`     | Inicia a API em modo desenvolvimento   |
+| `npm run dev`       | Inicia a API em modo desenvolvimento   |
 | `npx prisma studio` | Interface visual para o banco de dados |
 
 ---
@@ -106,9 +106,13 @@ POST /api/register
 
 ```json
 {
-  "name": "João",
-  "email": "joao@email.com",
-  "password": "senha123"
+    "email": "davidsantos@gmail.com",
+    "name": "David",
+    "lastName": "Santos",
+    "company": "Lego BR",
+    "birthday": "2002-07-25T00:00:00Z",
+    "password": "1234david",
+    "confirmPassword": "1234david"
 }
 ```
 
@@ -120,8 +124,8 @@ POST /api/login
 
 ```json
 {
-  "email": "joao@email.com",
-  "password": "senha123"
+    "email": "davidsantos@gmail.com",
+    "password": "1234david"
 }
 ```
 
