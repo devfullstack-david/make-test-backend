@@ -1,5 +1,5 @@
 import { IAuthService } from "../../interfaces/auth-service";
-import { ILogin, ILoginParams } from "../../interfaces/user/login";
+import { ILogin, ILoginParams, ILoginReturn } from "../../interfaces/user/login";
 
 export class LoginUseCase {
     constructor (
@@ -7,7 +7,7 @@ export class LoginUseCase {
         private readonly authService: IAuthService,
     ) {};
 
-    async execute(user: ILoginParams): Promise<boolean> {
+    async execute(user: ILoginParams): Promise<ILoginReturn> {
         const existsUser = await this.loginRepository.login(user);
 
         if (!existsUser) {
@@ -21,6 +21,10 @@ export class LoginUseCase {
 
         if (!validPassword) throw new Error("Senha inválida");
 
-        return true;
+        const token = this.authService.generateToken({ id: existsUser.id, email: existsUser.email });
+        return {
+            existsUser: true,
+            token,
+        };
     }
 }

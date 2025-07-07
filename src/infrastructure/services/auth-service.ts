@@ -1,5 +1,8 @@
 import { IAuthService } from "../../domain/interfaces/auth-service";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const secret = process.env.JWT_SECRET || 'defaultsecret';
 
 export class AuthService implements IAuthService {
     private readonly saltRounds = 10;
@@ -13,5 +16,17 @@ export class AuthService implements IAuthService {
 
     async comparePassword(password: string, hashedPassword: string): Promise<boolean> {
         return await bcrypt.compare(password, hashedPassword);
+    }
+
+    generateToken(payload: object): string {
+        return jwt.sign(payload, secret, { expiresIn: '1d' })
+    }
+
+    verifyToken(token: string) {
+        try {
+            return jwt.verify(token, secret);
+        } catch (error) {
+            throw new Error('Token inválido ou expirado');
+        }
     }
 }

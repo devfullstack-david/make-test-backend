@@ -5,6 +5,11 @@ export type ILoginParams = {
     password: string;
 };
 
+export type ILoginReturn = {
+    existsUser: boolean;
+    token: string;
+}
+
 export interface ILogin {
     login(user: ILoginParams): Promise<UserDatabase | null>;
 }
