@@ -6,7 +6,7 @@ export class RegisterController implements IController<void> {
     async handle(req: Request, res: Response): Promise<void> {
         try {
             const useCase = new RegisterFactory();
-            const existsUser = await useCase.handle(req.body);
+            const existsUser = await useCase.handle(req.body.params);
 
             res.status(201).json({ existsUser, });
         } catch (error: any) {

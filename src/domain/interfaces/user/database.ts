@@ -1,5 +1,5 @@
 export type UserDatabase = {
-    id: string;
+    id: number;
     email: string;
     password: string;
     name: string;
